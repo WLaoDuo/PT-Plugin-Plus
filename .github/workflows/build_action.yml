@@ -156,15 +156,15 @@ jobs:
 
       - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
         id: addonsDeploy
-        if: ${{ env.FF_EXT_UUID != ''  }}
-        env:
-          FF_EXT_UUID: ${{ secrets.FF_EXT_UUID }}
+        # if: ${{ env.FF_EXT_UUID != ''  }}
+        # env:
+          # FF_EXT_UUID:  #${{ secrets.FF_EXT_UUID }}
         continue-on-error: true
         with:
           timeoutMs: 600000
           zipFilePath: extension.zip
           xpiFilePath: artifact/extension.signed.xpi
-          extensionId: ${{ secrets.FF_EXT_UUID }}
+          # extensionId: ${{ secrets.FF_EXT_UUID }}
           jwtIssuer: ${{ secrets.FF_JWT_ISSUER }}
           jwtSecret: ${{ secrets.FF_JWT_SECRET }}
 
