@@ -1,6 +1,31 @@
 name: Build Action Release
 
 on:
+
+  workflow_dispatch:  # 添加 workflow_dispatch 事件
+  push:
+    branches: [ dev ]
+  pull_request:
+    branches: [ dev ]
+  workflow_call:
+    inputs:
+      ref:
+        default: 'dev'
+        type: string
+      auto_update_file:
+        default: 'canary.xml'
+        type: string
+      build_xpi:
+        default: true #false
+        type: boolean
+    outputs:
+      version:
+        value: ${{ jobs.zip.outputs.version }}
+      buildXPI:
+        value: ${{ jobs.xpi.outputs.exist_xpi_file }}
+    secrets:
+      CRX_PRIVATE_KEY:
+        required: true
   push:
     branches: [ dev ]
   pull_request:
