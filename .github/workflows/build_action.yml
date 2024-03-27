@@ -157,11 +157,12 @@ jobs:
       - name: Sign Firefox xpi for offline distribution
         uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
         id: addonsDeploy
-        # if: ${{ env.FF_EXT_UUID != ''  }}
+        # # if: ${{ env.FF_EXT_UUID != ''  }}
         # env:
-          # FF_EXT_UUID:  #${{ secrets.FF_EXT_UUID }}
+        #   FF_EXT_UUID:  ${{ secrets.FF_EXT_UUID }}
         continue-on-error: true
         with:
+          name: test
           timeoutMs: 600000
           zipFilePath: extension.zip
           xpiFilePath: artifact/extension.signed.xpi
