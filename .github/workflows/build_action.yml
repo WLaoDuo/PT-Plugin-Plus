@@ -154,7 +154,8 @@ jobs:
         with:
           name: dev-build-${{ needs.zip.outputs.version }}-zip
 
-      - uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
+      - name: Sign Firefox xpi for offline distribution
+        uses: cardinalby/webext-buildtools-firefox-sign-xpi-action@v1
         id: addonsDeploy
         # if: ${{ env.FF_EXT_UUID != ''  }}
         # env:
